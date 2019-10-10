@@ -33,4 +33,21 @@ class Adjuster implements AdjusterInterface
         }
         return $this->timezoneProvider->getDisplayTimezone();
     }
+
+    public function asDateTimeImmutable(\DateTimeInterface $date
+    ): \DateTimeImmutable {
+        return \DateTimeImmutable::createFromMutable($this->asDateTime($date));
+    }
+
+    public function asDateTime(\DateTimeInterface $date): \DateTime
+    {
+        $resultDate = \DateTime::createFromFormat(
+            \DateTimeInterface::ATOM,
+            $date->format(\DateTimeInterface::ATOM)
+        );
+        $resultDate->setTimezone($this->getDisplayTimezone());
+        return $resultDate;
+    }
+
+
 }
