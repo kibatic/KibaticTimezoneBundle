@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="kibatic_timezone.adjuster" class="\Kibatic\TimezoneBundle\Adjuster\Adjuster" public="true">
+            <argument></argument> <!-- will be filled in with client_id dynamically -->
+            <argument></argument> <!-- will be filled in with client_secret dynamically -->
+        </service>
+        <service id="kibatic_timezone.default_provider" class="\Kibatic\TimezoneBundle\Provider\DefaultProvider">
+        </service>
+    </services>
+</container>

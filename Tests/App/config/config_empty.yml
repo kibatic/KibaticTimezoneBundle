@@ -1,0 +1,8 @@
+framework:
+    trusted_hosts: ~
+    secret: "test"
+    translator:      { fallback: "fr" }
+    test: ~
+twig:
+    strict_variables: "%kernel.debug%"
+

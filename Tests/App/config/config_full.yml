@@ -1,0 +1,19 @@
+framework:
+    trusted_hosts: ~
+    secret: "test"
+    translator:      { fallback: "fr" }
+    test: ~
+twig:
+    strict_variables: "%kernel.debug%"
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+    Kibatic\TimezoneBundle\Tests\App\Service\:
+        resource: '../Service/*'
+
+kibatic_timezone:
+    default_display_timezone: "GMT+1"
+    timezone_provider: "Kibatic\\TimezoneBundle\\Tests\\App\\Service\\MyProvider"

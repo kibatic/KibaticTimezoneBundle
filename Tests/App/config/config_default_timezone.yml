@@ -1,0 +1,10 @@
+framework:
+    trusted_hosts: ~
+    secret: "test"
+    translator:      { fallback: "fr" }
+    test: ~
+twig:
+    strict_variables: "%kernel.debug%"
+
+kibatic_timezone:
+    default_display_timezone: "GMT+1"

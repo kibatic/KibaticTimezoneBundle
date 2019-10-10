@@ -1,0 +1,36 @@
+{
+    "name": "kibatic/timezone-bundle",
+    "type": "symfony-bundle",
+    "description": "Used to manage the display of a \\DateTimeInterface in the right timezone.",
+    "keywords": [
+        "timezone",
+        "DateTime"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Philippe Le Van",
+            "email": "philippe.levan@kibatic.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "symfony/framework-bundle": "^3.4 || ^4.0",
+        "symfony/twig-bundle": "^3.4 || ^4.0",
+        "twig/twig": "^2.0"
+    },
+    "require-dev": {
+        "symfony/console": "^3.4 || ^4.0",
+        "symfony/phpunit-bridge": "^4.3",
+        "symfony/yaml": "^4.3",
+        "symfony/translation": "^4.3",
+        "symfony/browser-kit": "^4.3",
+        "symfony/var-dumper": "^4.3"
+    },
+    "autoload": {
+        "psr-4": { "Kibatic\\TimezoneBundle\\": "" },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    }
+}
