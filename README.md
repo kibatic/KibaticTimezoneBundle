@@ -1,6 +1,8 @@
 Kibatic Timezone Bundle
 =====================
 
+[![Build Status](https://travis-ci.com/kibatic/KibaticTimezoneBundle.svg?branch=master)](https://travis-ci.com/kibatic/KibaticTimezoneBundle)
+
 This bundle is used to manage the display of a \DateTimeInterface in the right timezone.
 
 The common case is a project with all the \DateTimeInterface objects are
