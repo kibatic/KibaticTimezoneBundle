@@ -17,7 +17,7 @@ in config.yml
 ```yml
 kibatic_timezone:
     default_display_timezone: "Europe/Paris"
-    timezone_provider: "\Timezone\MyTimezoneProvider"
+    timezone_provider: "Timezone\\MyTimezoneProvider"
 ```
 
 in php
@@ -26,9 +26,9 @@ in php
 /** @var \DateTimeInterface $date */
 $date = new \DateTimeImmutable();
 
-$tzAdjuster = $container->get('\\Kibatic\\TimezoneBundle\\Adjuster');
-$dateTime = $tzAdjuster->asDateTimeImmutable($date);
-$dateTime2 = $tzAdjuster->asDateTime($date);
+$tzAdjuster = $container->get('kibatic_timezone.adjuster');
+$dateTimeImmutable = $tzAdjuster->asDateTimeImmutable($date);
+$dateTime = $tzAdjuster->asDateTime($date);
 ```
 
 in twig
