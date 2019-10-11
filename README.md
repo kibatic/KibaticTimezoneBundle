@@ -12,6 +12,13 @@ his preferences in order to display the dates with its own timezone.
 Quick start
 -----------
 
+installation
+
+```bash
+composer require kibatic/timezone-bundle
+```
+
+
 in config.yml
 
 ```yml
@@ -53,6 +60,15 @@ It implements [TimezoneProviderInterface](Provider/TimezoneProviderInterface)
 Versions
 --------
 
-2019-10-11 : v1.0
+2019-10-11 : v1.0.2
+
+* only for sf4.3+
+
+2019-10-11 : v1.0.1
+
+* fix deprecation in Configurator for sf4
+
+2019-10-11 : v1.0.0
 
 * initial publication
+
