@@ -7,7 +7,7 @@ use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
-class AppKernelDefaultTimezone extends Kernel
+class AppKernelMinimum extends Kernel
 {
     public function registerBundles()
     {
@@ -21,6 +21,6 @@ class AppKernelDefaultTimezone extends Kernel
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(__DIR__.'/config/config_default_timezone.yml');
+        $loader->load(__DIR__.'/config/config_minimum.yml');
     }
 }

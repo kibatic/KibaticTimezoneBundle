@@ -5,6 +5,9 @@ framework:
     test: ~
 twig:
     strict_variables: "%kernel.debug%"
+    default_path: '%kernel.project_dir%/templates'
+    paths:
+        "%kernel.root_dir%/templates": __main__
 
 kibatic_timezone:
-    default_display_timezone: "GMT+1"
+    default_display_timezone: "Europe/Paris"

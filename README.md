@@ -31,10 +31,13 @@ $dateTimeImmutable = $tzAdjuster->asDateTimeImmutable($date);
 $dateTime = $tzAdjuster->asDateTime($date);
 ```
 
-in twig
+in twig the syntax of tzdate is exactly the same as the date filter
+(it calls the default date filter. The only difference is that the
+timezone argument is set to false by default)
 
 ```twig
-{{ date | timezone | date('Y/m/d') }}
+{{ date | tzdate }}
+{{ date | tzdate('Y/m/d') }}
 ```
 
 Timezone Provider

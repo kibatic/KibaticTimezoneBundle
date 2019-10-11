@@ -2,36 +2,25 @@
 namespace Kibatic\TimezoneBundle\Tests\Config;
 
 use Kibatic\TimezoneBundle\Adjuster\Adjuster;
-use Kibatic\TimezoneBundle\Tests\App\AppKernelDefaultTimezone;
-use Kibatic\TimezoneBundle\Tests\App\AppKernelEmpty;
 use Kibatic\TimezoneBundle\Tests\App\AppKernelFull;
+use Kibatic\TimezoneBundle\Tests\App\AppKernelMinimum;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ConfigTest extends WebTestCase
 {
-    /*
-    public function testParsingEmptyConfit()
+    public function setUp()
     {
-        $client = self::createClient();
-        $adjuster = $client->getContainer()->get('kibatic_timezone.adjuster');
-        $this->assertEquals('Europe/Paris', $adjuster->getDisplayTimezone()->getName());
+        parent::setUp();
+        ini_set("date.timezone", 'GMT+0');
     }
-*/
-    public function testParsingEmptyConfig()
-    {
-        $client = new AppKernelEmpty('test', true);
-        $client->boot();
-        /** @var Adjuster $adjuster */
-        $adjuster = $client->getContainer()->get('kibatic_timezone.adjuster');
-        $this->assertEquals('Europe/Paris', $adjuster->getDisplayTimezone()->getName());
-    }
+
     public function testParsingDefaultTimezoneConfig()
     {
-        $client = new AppKernelDefaultTimezone('test', true);
+        $client = new AppKernelMinimum('test', true);
         $client->boot();
         /** @var Adjuster $adjuster */
         $adjuster = $client->getContainer()->get('kibatic_timezone.adjuster');
-        $this->assertEquals('+01:00', $adjuster->getDisplayTimezone()->getName());
+        $this->assertEquals('Europe/Paris', $adjuster->getDisplayTimezone()->getName());
     }
     public function testParsingFullConfig()
     {

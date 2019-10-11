@@ -10,5 +10,10 @@
         </service>
         <service id="kibatic_timezone.default_provider" class="\Kibatic\TimezoneBundle\Provider\DefaultProvider">
         </service>
+        <service id="kibatic_timezone.timezone_twig_extension" class="\Kibatic\TimezoneBundle\Twig\Extension\TimezoneExtension">
+            <argument type="service" id="kibatic_timezone.adjuster"/>
+            <argument type="service" id="twig"/>
+            <tag name="twig.extension"/>
+        </service>
     </services>
 </container>
