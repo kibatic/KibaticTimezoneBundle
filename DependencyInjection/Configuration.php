@@ -9,8 +9,9 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder('kibatic_timezone');
+        $rootNode = $this->getRootNode($treeBuilder, 'kibatic_timezone');
 
-        $treeBuilder->getRootNode()
+        $rootNode
             ->addDefaultsIfNotSet()
             ->children()
                 ->scalarNode('default_display_timezone')->end()
@@ -20,5 +21,14 @@ class Configuration implements ConfigurationInterface
             ->end();
 
         return $treeBuilder;
+    }
+
+    private function getRootNode(TreeBuilder $treeBuilder, $name)
+    {
+        // BC layer for symfony/config 4.1 and older
+        if (!\method_exists($treeBuilder, 'getRootNode')) {
+            return $treeBuilder->root($name);
+        }
+        return $treeBuilder->getRootNode();
     }
 }
