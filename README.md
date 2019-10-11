@@ -16,8 +16,8 @@ in config.yml
 
 ```yml
 kibatic_timezone:
-    default_display_timezone: "Europe/Paris"
-    timezone_provider: "Timezone\\MyTimezoneProvider"
+    default_display_timezone: "Europe/Paris"    # mandatory
+    timezone_provider: "App\\Timezone\\MyTimezoneProvider"   # optional
 ```
 
 in php
@@ -49,3 +49,10 @@ It's a service that is used to know the current timezone to display (for
 a webpage, an API, in a command, for an export,...)
 
 It implements [TimezoneProviderInterface](Provider/TimezoneProviderInterface)
+
+Versions
+--------
+
+2019-10-11 : v1.0
+
+* initial publication
