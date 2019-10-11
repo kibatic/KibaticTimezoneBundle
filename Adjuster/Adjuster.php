@@ -42,8 +42,8 @@ class Adjuster implements AdjusterInterface
     public function asDateTime(\DateTimeInterface $date): \DateTime
     {
         $resultDate = \DateTime::createFromFormat(
-            \DateTimeInterface::ATOM,
-            $date->format(\DateTimeInterface::ATOM)
+            \DateTime::ATOM,
+            $date->format(\DateTime::ATOM)
         );
         $resultDate->setTimezone($this->getDisplayTimezone());
         return $resultDate;

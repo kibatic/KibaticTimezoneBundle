@@ -33,14 +33,14 @@ class AdjusterTest extends TestCase
 
         $this->assertEquals(
             '2019-10-03T17:28:06+02:00',
-            $dateModified->format(\DateTimeInterface::ATOM)
+            $dateModified->format(\DateTime::ATOM)
         );
         $this->assertTrue($dateModified instanceof \DateTime);
 
         $dateImmutable = $adj->asDateTimeImmutable($date);
         $this->assertEquals(
             '2019-10-03T17:28:06+02:00',
-            $dateImmutable->format(\DateTimeInterface::ATOM)
+            $dateImmutable->format(\DateTime::ATOM)
         );
         $this->assertTrue($dateImmutable instanceof \DateTimeImmutable);
     }
