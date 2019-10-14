@@ -3,11 +3,18 @@ framework:
     secret: "test"
     translator:      { fallback: "fr" }
     test: ~
+
 twig:
     strict_variables: "%kernel.debug%"
     default_path: '%kernel.project_dir%/templates'
     paths:
         "%kernel.root_dir%/templates": __main__
+
+services:
+    twig.extension.intl:
+        class: Twig\Extensions\IntlExtension
+        tags:
+            - { name: twig.extension }
 
 kibatic_timezone:
     default_display_timezone: "Europe/Paris"

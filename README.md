@@ -18,7 +18,6 @@ installation
 composer require kibatic/timezone-bundle
 ```
 
-
 in config.yml
 
 ```yml
@@ -38,13 +37,40 @@ $dateTimeImmutable = $tzAdjuster->asDateTimeImmutable($date);
 $dateTime = $tzAdjuster->asDateTime($date);
 ```
 
-in twig the syntax of tzdate is exactly the same as the date filter
+in twig the syntax of tzdate is exactly the same as the
+[twig date filter](https://twig.symfony.com/doc/2.x/filters/date.html).
 (it calls the default date filter. The only difference is that the
 timezone argument is set to false by default)
 
 ```twig
 {{ date | tzdate }}
 {{ date | tzdate('Y/m/d') }}
+```
+
+Localized date
+--------------
+
+You can use the new twig : tzlocalizeddate filter. It has the same
+interface than the [localizeddate filter from twig-extension intl](https://twig-extensions.readthedocs.io/en/latest/intl.html#localizeddate), but with a $timezone to
+false by default.
+
+In order to make it work, you have to enable intl extension in your config.yaml
+file.
+
+```yaml
+services:
+    twig.extension.intl:
+        class: Twig\Extensions\IntlExtension
+        tags:
+            - { name: twig.extension }
+```
+
+Then use
+
+```twig
+{{ date | tzlocalizeddate('short', 'short') }}
+{{ date | tzlocalizeddate('long', 'long') }}
+{{ date | tzlocalizeddate }}
 ```
 
 Timezone Provider
@@ -57,8 +83,36 @@ a webpage, an API, in a command, for an export,...)
 
 It implements [TimezoneProviderInterface](Provider/TimezoneProviderInterface)
 
+The adjuster as twig global variable
+------------------------------------
+
+If needed, you can add the adjuster as a twig global variable :
+
+in config/packages/twig.yaml, you can add
+
+```yaml
+twig:
+  globals:
+    timezoneAdjuster: '@kibatic_timezone.adjuster'
+```
+
+and then in any twig you can use the adjuster
+
+```twig
+<div>Timezone : {{ timezoneAdjuster.displayTimezone().name }}</div>
+
+{# convertir un datetime en datetime avec la bone timezone #}
+{{ timezoneAdjuster.asDateTime(date) }}
+
+```
+
 Versions
 --------
+
+2019-10-14 : v1.1.0
+
+* Readme updated
+* add tzlocalizeddate twig filter
 
 2019-10-11 : v1.0.2
 

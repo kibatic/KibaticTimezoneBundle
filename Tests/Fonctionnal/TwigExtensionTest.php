@@ -13,7 +13,7 @@ class TwigExtensionTest extends WebTestCase
         ini_set("date.timezone", 'GMT+0');
     }
 
-    public function testTwigExtension()
+    public function testTwigExtensionTzDate()
     {
         $client = new AppKernelMinimum('test', true);
         $client->boot();
@@ -25,6 +25,25 @@ class TwigExtensionTest extends WebTestCase
         );
         $this->assertEquals(
             "2019-10-03 17:28:06 +0200\nOctober 3, 2019 17:28\n",
+            $rendered
+        );
+    }
+
+    public function testTwigExtensionTzLocalizedDate()
+    {
+        \Locale::setDefault('fr_FR');
+        $client = new AppKernelMinimum('test', true);
+        $client->boot();
+        /** @var Environment $twig */
+        $twig = $client->getContainer()->get('twig');
+        $rendered = $twig->render(
+            'testLocalized.html.twig',
+            ['date' => new \DateTime('2019-10-03T15:28:06')]
+        );
+        $this->assertEquals(
+            "03/10/2019 17:28
+3 octobre 2019 à 17:28:06 UTC+2
+3 oct. 2019 à 17:28:06\n",
             $rendered
         );
     }

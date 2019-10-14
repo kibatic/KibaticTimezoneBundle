@@ -23,6 +23,8 @@ class TimezoneExtension extends AbstractExtension
     {
         return [
             new TwigFilter('tzdate', [$this, 'tzDate']),
+            new TwigFilter('tzlocalizeddate', [$this, 'tzLocalizedDate']),
+
         ];
     }
 
@@ -46,6 +48,41 @@ class TimezoneExtension extends AbstractExtension
             $this->adjuster->asDateTime($date),
             $format,
             $timezone
+        );
+    }
+
+    /**
+     * an exact copy of the filter :
+     * https://twig-extensions.readthedocs.io/en/latest/intl.html#localizeddate
+     * but with the default timezone to false
+     *
+     * @param $date
+     * @param string $dateFormat
+     * @param string $timeFormat
+     * @param null $locale
+     * @param bool $timezone
+     * @param null $format
+     * @param string $calendar
+     * @return string
+     */
+    public function tzLocalizedDate(
+        $date,
+        $dateFormat = 'medium',
+        $timeFormat = 'medium',
+        $locale = null,
+        $timezone = false,
+        $format = null,
+        $calendar = 'gregorian'
+    ):string {
+        return \twig_localized_date_filter(
+            $this->twig,
+            $this->adjuster->asDateTime($date),
+            $dateFormat,
+            $timeFormat,
+            $locale,
+            $timezone,
+            $format,
+            $calendar
         );
     }
 }
