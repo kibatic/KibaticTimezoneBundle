@@ -109,6 +109,10 @@ and then in any twig you can use the adjuster
 Versions
 --------
 
+2019-10-14 : v1.1.1
+
+* hum... fix unit tests in travis for v1.1.0
+
 2019-10-14 : v1.1.0
 
 * Readme updated
