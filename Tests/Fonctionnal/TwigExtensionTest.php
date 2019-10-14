@@ -41,9 +41,7 @@ class TwigExtensionTest extends WebTestCase
             ['date' => new \DateTime('2019-10-03T15:28:06')]
         );
         $this->assertEquals(
-            "03/10/2019 17:28
-3 octobre 2019 à 17:28:06 UTC+2
-3 oct. 2019 à 17:28:06\n",
+            "03/10/2019 17:28\n",
             $rendered
         );
     }
