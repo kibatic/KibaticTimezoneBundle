@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use Twig\Extra\TwigExtraBundle\TwigExtraBundle;
 
 class AppKernelMinimum extends Kernel
 {
@@ -14,7 +15,8 @@ class AppKernelMinimum extends Kernel
         $bundles = array(
             new FrameworkBundle(),
             new TwigBundle(),
-            new KibaticTimezoneBundle()
+            new KibaticTimezoneBundle(),
+            new TwigExtraBundle()
         );
         return $bundles;
     }

@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class AdjusterTest extends TestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         ini_set("date.timezone", 'GMT+0');

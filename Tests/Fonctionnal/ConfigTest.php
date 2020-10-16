@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ConfigTest extends WebTestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         ini_set("date.timezone", 'GMT+0');

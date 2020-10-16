@@ -47,25 +47,26 @@ timezone argument is set to false by default)
 {{ date | tzdate('Y/m/d') }}
 ```
 
-Localized date
---------------
+Format Datetime
+---------------
+
+You can use the new twig : tz_format_datetime filter. It has the same
+interface than the [format_datetime filter from twig/extra-bundle](https://twig.symfony.com/doc/3.x/filters/format_datetime.html), but with a $timezone to
+false by default.
+
+```twig
+{{ date | tz_format_datetime('short', 'short') }}
+{{ date | tz_format_datetime('long', 'long') }}
+{{ date | tz_format_datetime }}
+```
+
+
+Deprecated Localized date
+-------------------------
 
 You can use the new twig : tzlocalizeddate filter. It has the same
 interface than the [localizeddate filter from twig-extension intl](https://twig-extensions.readthedocs.io/en/latest/intl.html#localizeddate), but with a $timezone to
 false by default.
-
-In order to make it work, you have to enable intl extension in your config.yaml
-file.
-
-```yaml
-services:
-    twig.extension.intl:
-        class: Twig\Extensions\IntlExtension
-        tags:
-            - { name: twig.extension }
-```
-
-Then use
 
 ```twig
 {{ date | tzlocalizeddate('short', 'short') }}
@@ -108,6 +109,16 @@ and then in any twig you can use the adjuster
 
 Versions
 --------
+
+2020-10-16 : V2.0.0
+
+MAJOR BC BREAKS !!
+
+* symfony 5.1+ only
+* Twig 3+
+* twig/extra-bundle instead of twig/extensions
+* tzlocalizeddate is deprecated. Use tz_format_datetime instead
+
 
 2019-10-14 : v1.1.1
 

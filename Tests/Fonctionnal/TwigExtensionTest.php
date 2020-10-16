@@ -7,7 +7,7 @@ use Twig\Environment;
 
 class TwigExtensionTest extends WebTestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         ini_set("date.timezone", 'GMT+0');
@@ -38,6 +38,23 @@ class TwigExtensionTest extends WebTestCase
         $twig = $client->getContainer()->get('twig');
         $rendered = $twig->render(
             'testLocalized.html.twig',
+            ['date' => new \DateTime('2019-10-03T15:28:06')]
+        );
+        $this->assertEquals(
+            "03/10/2019 17:28\n",
+            $rendered
+        );
+    }
+
+    public function testTwigExtensionTzFormatDatetime()
+    {
+        \Locale::setDefault('fr_FR');
+        $client = new AppKernelMinimum('test', true);
+        $client->boot();
+        /** @var Environment $twig */
+        $twig = $client->getContainer()->get('twig');
+        $rendered = $twig->render(
+            'testFormatDatetime.html.twig',
             ['date' => new \DateTime('2019-10-03T15:28:06')]
         );
         $this->assertEquals(

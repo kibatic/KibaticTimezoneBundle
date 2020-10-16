@@ -13,6 +13,7 @@
         <service id="kibatic_timezone.timezone_twig_extension" class="\Kibatic\TimezoneBundle\Twig\Extension\TimezoneExtension">
             <argument type="service" id="kibatic_timezone.adjuster"/>
             <argument type="service" id="twig"/>
+            <argument type="service" id="twig.extension.intl"/>
             <tag name="twig.extension"/>
         </service>
     </services>
