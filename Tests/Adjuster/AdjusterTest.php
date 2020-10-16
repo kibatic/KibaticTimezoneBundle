@@ -2,6 +2,7 @@
 namespace Kibatic\TimezoneBundle\Tests\Adjuster;
 
 use Kibatic\TimezoneBundle\Adjuster\Adjuster;
+use Kibatic\TimezoneBundle\Adjuster\AdjusterUtil;
 use Kibatic\TimezoneBundle\Provider\DefaultProvider;
 use PHPUnit\Framework\TestCase;
 
@@ -43,5 +44,20 @@ class AdjusterTest extends TestCase
             $dateImmutable->format(\DateTime::ATOM)
         );
         $this->assertTrue($dateImmutable instanceof \DateTimeImmutable);
+    }
+
+    public function testWithMicrotime()
+    {
+        $adj = new Adjuster(
+            'Europe/Paris',
+            new DefaultProvider()
+        );
+        $date = new \DateTime('2019-10-03T15:28:06.345');
+        $dateModified = $adj->asDateTime($date);
+
+        $this->assertEquals(
+            '2019-10-03T17:28:06.345000+02:00',
+            $dateModified->format(AdjusterUtil::EXCHANGE_FORMAT)
+        );
     }
 }

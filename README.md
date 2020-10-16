@@ -37,6 +37,17 @@ $dateTimeImmutable = $tzAdjuster->asDateTimeImmutable($date);
 $dateTime = $tzAdjuster->asDateTime($date);
 ```
 
+Convert \DateTime to a given timezone with AdjusterUtil
+-------------------------------------------------------
+
+```php
+$date = new \DateTime('2019-10-03T15:28:06.256+02:00');
+$dateModified = AdjusterUtil::changeTimezone($date, new \DateTimeZone('GMT+0'));
+```
+
+Format datetime with timezone in twig
+-------------------------------------
+
 in twig the syntax of tzdate is exactly the same as the
 [twig date filter](https://twig.symfony.com/doc/2.x/filters/date.html).
 (it calls the default date filter. The only difference is that the
@@ -47,8 +58,8 @@ timezone argument is set to false by default)
 {{ date | tzdate('Y/m/d') }}
 ```
 
-Format Datetime
----------------
+Format Datetime in twig with localization (intl)
+------------------------------------------------
 
 You can use the new twig : tz_format_datetime filter. It has the same
 interface than the [format_datetime filter from twig/extra-bundle](https://twig.symfony.com/doc/3.x/filters/format_datetime.html), but with a $timezone to
@@ -110,7 +121,13 @@ and then in any twig you can use the adjuster
 Versions
 --------
 
-2020-10-16 : V2.0.0
+2020-10-16 : v2.1.0
+
+* NEW : refactoring : add a AdjusterUtil class that allows to convert datetimes
+without instanciating Adjuster service
+* FIX : microsecond management. The last library removed microseconds from datetime.
+
+2020-10-16 : v2.0.0
 
 MAJOR BC BREAKS !!
 
